@@ -33,18 +33,18 @@ data "tfe_variable_set" "this" {
 }
 
 resource "tfe_variable" "vault_addr" {
-  count        = length(data.tfe_variable_set.this) > 0 ? 1 : 0
-  key          = "VAULT_ADDR"
-  value        = hcp_vault_cluster.this.public_endpoint_url
-  category     = "env"
+  count           = length(data.tfe_variable_set.this) > 0 ? 1 : 0
+  key             = "VAULT_ADDR"
+  value           = hcp_vault_cluster.this.public_endpoint_url
+  category        = "env"
   variable_set_id = data.tfe_variable_set.this[0].id
 }
 
 resource "tfe_variable" "vault_token" {
-  count        = length(data.tfe_variable_set.this) > 0 ? 1 : 0
-  key          = "VAULT_TOKEN"
-  value        = hcp_vault_cluster_admin_token.this.token
-  category     = "env"
-  sensitive    = true
+  count           = length(data.tfe_variable_set.this) > 0 ? 1 : 0
+  key             = "VAULT_TOKEN"
+  value           = hcp_vault_cluster_admin_token.this.token
+  category        = "env"
+  sensitive       = true
   variable_set_id = data.tfe_variable_set.this[0].id
 }

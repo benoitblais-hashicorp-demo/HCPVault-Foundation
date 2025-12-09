@@ -4,7 +4,7 @@ variable "cidr_block" {
   default     = "172.25.16.0/20"
 
   validation {
-    condition = can(cidrhost(var.cidr_block,0))
+    condition     = can(cidrhost(var.cidr_block, 0))
     error_message = "Value must be a valid CIDR block."
   }
 }
@@ -15,7 +15,7 @@ variable "cloud_provider" {
   default     = "aws"
 
   validation {
-    condition = contains(["aws", "azure"], var.cloud_provider)
+    condition     = contains(["aws", "azure"], var.cloud_provider)
     error_message = "Value must be either 'aws' or 'azure'"
   }
 }
@@ -38,11 +38,11 @@ variable "maintenance_window_day" {
   default     = null
 
   validation {
-    condition = var.maintenance_window_day == null || contains(["SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"], upper(var.maintenance_window_day))
+    condition     = var.maintenance_window_day == null || contains(["SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"], upper(var.maintenance_window_day))
     error_message = "Valid options for maintenance_window_day are \"SUNDAY\", \"MONDAY\", \"TUESDAY\", \"WEDNESDAY\", \"THURSDAY\", \"FRIDAY\", and \"SATURDAY\"."
   }
   validation {
-    condition = var.maintenance_window_day != null || var.upgrade_type != "scheduled"
+    condition     = var.maintenance_window_day != null || var.upgrade_type != "scheduled"
     error_message = "Required if `upgrade_type` is set to `scheduled`."
   }
 }
@@ -53,11 +53,11 @@ variable "maintenance_window_time" {
   default     = null
 
   validation {
-    condition = var.maintenance_window_time == null || contains(["WINDOW_12AM_4AM", "WINDOW_6AM_10AM", "WINDOW_12PM_4PM", "WINDOW_6PM_10PM"], upper(var.maintenance_window_time))
+    condition     = var.maintenance_window_time == null || contains(["WINDOW_12AM_4AM", "WINDOW_6AM_10AM", "WINDOW_12PM_4PM", "WINDOW_6PM_10PM"], upper(var.maintenance_window_time))
     error_message = "Valid options for maintenance_window_time are \"WINDOW_12AM_4AM\", \"WINDOW_6AM_10AM\", \"WINDOW_12PM_4PM\", and \"WINDOW_6PM_10PM\"."
   }
   validation {
-    condition = var.maintenance_window_time != null || var.upgrade_type != "scheduled"
+    condition     = var.maintenance_window_time != null || var.upgrade_type != "scheduled"
     error_message = "Required if `upgrade_type` is set to `scheduled`."
   }
 }
@@ -92,7 +92,7 @@ variable "tier" {
   default     = "standard_small"
 
   validation {
-    condition = contains(["dev", "standard_small", "standard_medium", "standard_large", "plus_small", "plus_medium", "plus_large"], lower(var.tier))
+    condition     = contains(["dev", "standard_small", "standard_medium", "standard_large", "plus_small", "plus_medium", "plus_large"], lower(var.tier))
     error_message = "Valid options for tiers are \"dev\", \"standard_small\", \"standard_medium\", \"standard_large\", \"plus_small\", \"plus_medium\", \"plus_large\"."
   }
 }
@@ -103,7 +103,7 @@ variable "upgrade_type" {
   default     = "manual"
 
   validation {
-    condition = contains(["AUTOMATIC", "SCHEDULED", "MANUAL"], upper(var.upgrade_type))
+    condition     = contains(["AUTOMATIC", "SCHEDULED", "MANUAL"], upper(var.upgrade_type))
     error_message = "Valid options for upgrade_type are \"automatic\", \"scheduled\", and \"manual\"."
   }
 }
