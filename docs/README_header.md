@@ -44,10 +44,10 @@ to authenticate.
   * Aadmin Token
 * HCP Terraform Variables
 
-# Prerequisite
+## Prerequisite
 
 In order to deploy the configuration from this code, you must first create a HCP Terraform
-Project which will contain all workspaces used to managed Vault. 
+Project which will contain all workspaces used to managed Vault.
 
 You must then create a variable set which will contain all the required variable to
 authenticate to Vault.
