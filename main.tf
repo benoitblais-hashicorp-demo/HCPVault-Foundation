@@ -41,10 +41,10 @@ resource "tfe_variable" "vault_addr" {
 }
 
 resource "tfe_variable" "vault_token" {
-  count        = length(data.tfe_variable_set.this) > 0 ? 1 : 0
-  key          = "VAULT_TOKEN"
-  value        = hcp_vault_cluster_admin_token.this.token
-  category     = "env"
-  sensitive    = true
+  count           = length(data.tfe_variable_set.this) > 0 ? 1 : 0
+  key             = "VAULT_TOKEN"
+  value           = hcp_vault_cluster_admin_token.this.token
+  category        = "env"
+  sensitive       = true
   variable_set_id = data.tfe_variable_set.this[0].id
 }
