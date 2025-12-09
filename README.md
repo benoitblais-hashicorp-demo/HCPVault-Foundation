@@ -131,7 +131,7 @@ Description: (Optional) The minimum Vault version to use when creating the clust
 
 Type: `string`
 
-Default: `"1.21"`
+Default: `null`
 
 ### <a name="input_organization"></a> [organization](#input\_organization)
 
@@ -163,7 +163,7 @@ Description: (Optional) Tier of the HCP Vault cluster. Valid options for tiers -
 
 Type: `string`
 
-Default: `"standard_small"`
+Default: `"dev"`
 
 ### <a name="input_upgrade_type"></a> [upgrade\_type](#input\_upgrade\_type)
 
@@ -171,7 +171,7 @@ Description: (Optional) The type of major version upgrade to perform. Valid opti
 
 Type: `string`
 
-Default: `"manual"`
+Default: `null`
 
 ### <a name="input_variable_set_name"></a> [variable\_set\_name](#input\_variable\_set\_name)
 
