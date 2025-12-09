@@ -1,10 +1,11 @@
 variable "cidr_block" {
   description = "(Optional) The CIDR range of the HVN. If this is not provided, the service will provide a default value."
   type        = string
+  nullable    = true
   default     = "172.25.16.0/20"
 
   validation {
-    condition     = can(cidrhost(var.cidr_block, 0))
+    condition     = var.cidr_block != null ? can(cidrhost(var.cidr_block, 0)) : true
     error_message = "Value must be a valid CIDR block."
   }
 }
@@ -12,6 +13,7 @@ variable "cidr_block" {
 variable "cloud_provider" {
   description = "(Optional) The provider where the HVN is located. The provider 'aws' is generally available and 'azure' is in public beta.."
   type        = string
+  nullable    = false
   default     = "aws"
 
   validation {
@@ -23,18 +25,21 @@ variable "cloud_provider" {
 variable "cluster_id" {
   description = "(Optional) The ID of the HCP Vault cluster."
   type        = string
+  nullable    = false
   default     = "vault-cluster"
 }
 
 variable "hvn_id" {
   description = "(Optional) The ID of the HashiCorp Virtual Network (HVN)."
   type        = string
+  nullable    = false
   default     = "hvn"
 }
 
 variable "maintenance_window_day" {
   description = "(Optional) The maintenance day of the week for scheduled upgrades. Valid options for maintenance window day - `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `sunday`"
   type        = string
+  nullable    = true
   default     = null
 
   validation {
@@ -50,6 +55,7 @@ variable "maintenance_window_day" {
 variable "maintenance_window_time" {
   description = "(Optional) The maintenance time frame for scheduled upgrades. Valid options for maintenance window time - WINDOW_12AM_4AM, WINDOW_6AM_10AM, WINDOW_12PM_4PM, WINDOW_6PM_10PM."
   type        = string
+  nullable    = true
   default     = null
 
   validation {
@@ -65,12 +71,19 @@ variable "maintenance_window_time" {
 variable "min_vault_version" {
   description = "(Optional) The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is currently recommended by HCP."
   type        = string
-  default     = "1.21"
+  nullable    = true
+  default     = "1.21.1"
+
+  validation {
+    condition     = var.min_vault_version != null ? can(regex("^\\d+\\.\\d+(\\.\\d+)?$", var.min_vault_version)) : true
+    error_message = "Value must be a valid Vault version in the format 'X.Y.Z'."
+  }
 }
 
 variable "organization" {
   description = "(Optional) Name of the organization."
   type        = string
+  nullable    = true
   default     = null
 }
 
@@ -83,12 +96,14 @@ variable "public_endpoint" {
 variable "region" {
   description = "(Optional) The region where the HVN is located."
   type        = string
+  nullable    = false
   default     = "ca-central-1"
 }
 
 variable "tier" {
   description = "(Optional) Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `standard_small`, `standard_medium`, `standard_large`, `plus_small`, `plus_medium`, `plus_large`."
   type        = string
+  nullable    = false
   default     = "standard_small"
 
   validation {
@@ -100,6 +115,7 @@ variable "tier" {
 variable "upgrade_type" {
   description = "(Optional) The type of major version upgrade to perform. Valid options are `AUTOMATIC`, `SCHEDULED`, and `MANUAL`."
   type        = string
+  nullable    = false
   default     = "manual"
 
   validation {
@@ -111,5 +127,6 @@ variable "upgrade_type" {
 variable "variable_set_name" {
   description = "(Optional) Name of the HCP Terraformvariable set."
   type        = string
+  nullable    = true
   default     = "hcp-vault-hcp"
 }
