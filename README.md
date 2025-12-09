@@ -131,7 +131,7 @@ Description: (Optional) The minimum Vault version to use when creating the clust
 
 Type: `string`
 
-Default: `"1.21"`
+Default: `"1.21.1"`
 
 ### <a name="input_organization"></a> [organization](#input\_organization)
 
