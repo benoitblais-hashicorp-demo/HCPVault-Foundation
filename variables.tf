@@ -72,7 +72,7 @@ variable "min_vault_version" {
   description = "(Optional) The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is currently recommended by HCP."
   type        = string
   nullable    = true
-  default     = "1.21.1"
+  default     = null
 
   validation {
     condition     = var.min_vault_version != null ? can(regex("^\\d+\\.\\d+(\\.\\d+)?$", var.min_vault_version)) : true
@@ -104,7 +104,7 @@ variable "tier" {
   description = "(Optional) Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `standard_small`, `standard_medium`, `standard_large`, `plus_small`, `plus_medium`, `plus_large`."
   type        = string
   nullable    = false
-  default     = "standard_small"
+  default     = "dev"
 
   validation {
     condition     = contains(["dev", "standard_small", "standard_medium", "standard_large", "plus_small", "plus_medium", "plus_large"], lower(var.tier))
