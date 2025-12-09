@@ -5,7 +5,7 @@ variable "cidr_block" {
   default     = "172.25.16.0/20"
 
   validation {
-    condition     = var.cidr_block != null ? can(cidrhost(var.cidr_block, 0)) : true
+    condition     = var.cidr_block == null || can(cidrhost(var.cidr_block, 0))
     error_message = "Value must be a valid CIDR block."
   }
 }
@@ -75,7 +75,7 @@ variable "min_vault_version" {
   default     = null
 
   validation {
-    condition     = var.min_vault_version != null ? can(regex("^\\d+\\.\\d+(\\.\\d+)?$", var.min_vault_version)) : true
+    condition     = var.min_vault_version == null || can(regex("^\\d+\\.\\d+(\\.\\d+)?$", var.min_vault_version))
     error_message = "Value must be a valid Vault version in the format 'X.Y.Z'."
   }
 }
@@ -115,11 +115,11 @@ variable "tier" {
 variable "upgrade_type" {
   description = "(Optional) The type of major version upgrade to perform. Valid options are `AUTOMATIC`, `SCHEDULED`, and `MANUAL`."
   type        = string
-  nullable    = false
-  default     = "manual"
+  nullable    = true
+  default     = null
 
   validation {
-    condition     = contains(["AUTOMATIC", "SCHEDULED", "MANUAL"], upper(var.upgrade_type))
+    condition     = var.upgrade_type == null || contains(["AUTOMATIC", "SCHEDULED", "MANUAL"], upper(var.upgrade_type))
     error_message = "Valid options for upgrade_type are \"automatic\", \"scheduled\", and \"manual\"."
   }
 }
