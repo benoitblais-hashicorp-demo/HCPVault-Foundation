@@ -14,8 +14,8 @@ resource "hcp_vault_cluster" "this" {
 
   major_version_upgrade_config {
     upgrade_type            = upper(var.upgrade_type)
-    maintenance_window_day  = upper(var.maintenance_window_day)
-    maintenance_window_time = upper(var.maintenance_window_time)
+    maintenance_window_day  = var.maintenance_window_day != null ? upper(var.maintenance_window_day) : null
+    maintenance_window_time = var.maintenance_window_time != null ? upper(var.maintenance_window_time) : null
   }
   # lifecycle {
   #   prevent_destroy = true
