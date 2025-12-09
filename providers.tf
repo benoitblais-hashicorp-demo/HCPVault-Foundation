@@ -1,0 +1,3 @@
+provider "hcp" {}
+
+provider "tfe" {}
