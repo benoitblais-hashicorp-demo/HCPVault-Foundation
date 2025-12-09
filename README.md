@@ -171,7 +171,7 @@ Description: (Optional) The type of major version upgrade to perform. Valid opti
 
 Type: `string`
 
-Default: `"manual"`
+Default: `null`
 
 ### <a name="input_variable_set_name"></a> [variable\_set\_name](#input\_variable\_set\_name)
 

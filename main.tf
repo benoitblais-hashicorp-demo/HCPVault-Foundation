@@ -12,10 +12,13 @@ resource "hcp_vault_cluster" "this" {
   public_endpoint   = var.public_endpoint
   tier              = lower(var.tier)
 
-  major_version_upgrade_config {
-    upgrade_type            = upper(var.upgrade_type)
-    maintenance_window_day  = var.maintenance_window_day != null ? upper(var.maintenance_window_day) : null
-    maintenance_window_time = var.maintenance_window_time != null ? upper(var.maintenance_window_time) : null
+  dynamic "major_version_upgrade_config" {
+    for_each = var.upgrade_type != null ? [var.upgrade_type] : []
+    content {
+      upgrade_type            = upper(major_version_upgrade_config.value)
+      maintenance_window_day  = var.maintenance_window_day != null ? upper(var.maintenance_window_day) : null
+      maintenance_window_time = var.maintenance_window_time != null ? upper(var.maintenance_window_time) : null
+    }
   }
   # lifecycle {
   #   prevent_destroy = true
