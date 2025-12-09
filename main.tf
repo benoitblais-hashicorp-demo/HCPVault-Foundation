@@ -13,7 +13,7 @@ resource "hcp_vault_cluster" "this" {
   tier              = lower(var.tier)
 
   major_version_upgrade_config {
-    upgrade_type            = upper(var.upgrade_type)
+    upgrade_type            = var.upgrade_type != null ? upper(var.upgrade_type) : null
     maintenance_window_day  = var.maintenance_window_day != null ? upper(var.maintenance_window_day) : null
     maintenance_window_time = var.maintenance_window_time != null ? upper(var.maintenance_window_time) : null
   }
