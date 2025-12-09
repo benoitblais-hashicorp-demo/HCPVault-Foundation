@@ -33,10 +33,10 @@ data "tfe_variable_set" "this" {
 }
 
 resource "tfe_variable" "vault_addr" {
-  count        = length(data.tfe_variable_set.this) > 0 ? 1 : 0
-  key          = "VAULT_ADDR"
-  value        = hcp_vault_cluster.this.vault_public_endpoint_url
-  category     = "env"
+  count           = length(data.tfe_variable_set.this) > 0 ? 1 : 0
+  key             = "VAULT_ADDR"
+  value           = hcp_vault_cluster.this.vault_public_endpoint_url
+  category        = "env"
   variable_set_id = data.tfe_variable_set.this[0].id
 }
 
