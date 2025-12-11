@@ -77,6 +77,14 @@ No required inputs.
 
 The following input variables are optional (have default values):
 
+### <a name="input_bootstrap_workspace_name"></a> [bootstrap\_workspace\_name](#input\_bootstrap\_workspace\_name)
+
+Description: (Optional) Name of workspace used to bootstrap the HCP Vault dedicated.
+
+Type: `string`
+
+Default: `"HCPVault-Bootstrap"`
+
 ### <a name="input_cidr_block"></a> [cidr\_block](#input\_cidr\_block)
 
 Description: (Optional) The CIDR range of the HVN. If this is not provided, the service will provide a default value.
@@ -173,14 +181,6 @@ Type: `string`
 
 Default: `null`
 
-### <a name="input_variable_set_name"></a> [variable\_set\_name](#input\_variable\_set\_name)
-
-Description: (Optional) Name of the HCP Terraformvariable set.
-
-Type: `string`
-
-Default: `"hcp-vault-hcp"`
-
 ## Resources
 
 The following resources are used by this module:
@@ -190,7 +190,7 @@ The following resources are used by this module:
 - [hcp_vault_cluster_admin_token.this](https://registry.terraform.io/providers/hashicorp/hcp/0.110.0/docs/resources/vault_cluster_admin_token) (resource)
 - [tfe_variable.vault_addr](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/variable) (resource)
 - [tfe_variable.vault_token](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/variable) (resource)
-- [tfe_variable_set.this](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/data-sources/variable_set) (data source)
+- [tfe_workspace.bootstrap](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/data-sources/workspace) (data source)
 
 ## Outputs
 
