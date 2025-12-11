@@ -1,3 +1,10 @@
+variable "bootstrap_workspace_name" {
+  description = "(Optional) Name of workspace used to bootstrap the HCP Vault dedicated."
+  type        = string
+  nullable    = true
+  default     = "HCPVault-Bootstrap"
+}
+
 variable "cidr_block" {
   description = "(Optional) The CIDR range of the HVN. If this is not provided, the service will provide a default value."
   type        = string
@@ -124,9 +131,3 @@ variable "upgrade_type" {
   }
 }
 
-variable "variable_set_name" {
-  description = "(Optional) Name of the HCP Terraformvariable set."
-  type        = string
-  nullable    = true
-  default     = "hcp-vault-hcp"
-}

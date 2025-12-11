@@ -29,25 +29,25 @@ resource "hcp_vault_cluster_admin_token" "this" {
   cluster_id = hcp_vault_cluster.this.cluster_id
 }
 
-data "tfe_variable_set" "this" {
-  count        = var.variable_set_name != null ? 1 : 0
-  name         = var.variable_set_name
+data "tfe_workspace" "bootstrap" {
+  count        = var.bootstrap_workspace_name != null ? 1 : 0
+  name         = var.bootstrap_workspace_name
   organization = var.organization
 }
 
 resource "tfe_variable" "vault_addr" {
-  count           = length(data.tfe_variable_set.this) > 0 ? 1 : 0
+  count           = length(data.tfe_workspace.bootstrap) > 0 ? 1 : 0
   key             = "VAULT_ADDR"
   value           = hcp_vault_cluster.this.vault_public_endpoint_url
   category        = "env"
-  variable_set_id = data.tfe_variable_set.this[0].id
+  workspace_id    = data.tfe_workspace.bootstrap[0].id
 }
 
 resource "tfe_variable" "vault_token" {
-  count           = length(data.tfe_variable_set.this) > 0 ? 1 : 0
+  count           = length(data.tfe_workspace.bootstrap) > 0 ? 1 : 0
   key             = "VAULT_TOKEN"
   value           = hcp_vault_cluster_admin_token.this.token
   category        = "env"
   sensitive       = true
-  variable_set_id = data.tfe_variable_set.this[0].id
+  workspace_id    = data.tfe_workspace.bootstrap[0].id
 }
