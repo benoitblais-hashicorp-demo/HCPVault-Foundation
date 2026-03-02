@@ -36,18 +36,27 @@ data "tfe_workspace" "bootstrap" {
 }
 
 resource "tfe_variable" "vault_addr" {
-  count           = length(data.tfe_workspace.bootstrap) > 0 ? 1 : 0
-  key             = "VAULT_ADDR"
-  value           = hcp_vault_cluster.this.vault_public_endpoint_url
-  category        = "env"
-  workspace_id    = data.tfe_workspace.bootstrap[0].id
+  count        = length(data.tfe_workspace.bootstrap) > 0 ? 1 : 0
+  key          = "VAULT_ADDR"
+  value        = hcp_vault_cluster.this.vault_public_endpoint_url
+  category     = "env"
+  workspace_id = data.tfe_workspace.bootstrap[0].id
 }
 
 resource "tfe_variable" "vault_token" {
-  count           = length(data.tfe_workspace.bootstrap) > 0 ? 1 : 0
-  key             = "VAULT_TOKEN"
-  value           = hcp_vault_cluster_admin_token.this.token
-  category        = "env"
-  sensitive       = true
-  workspace_id    = data.tfe_workspace.bootstrap[0].id
+  count        = length(data.tfe_workspace.bootstrap) > 0 ? 1 : 0
+  key          = "VAULT_TOKEN"
+  value        = hcp_vault_cluster_admin_token.this.token
+  category     = "env"
+  sensitive    = true
+  workspace_id = data.tfe_workspace.bootstrap[0].id
+}
+
+resource "tfe_variable" "vault_address" {
+  count        = length(data.tfe_workspace.bootstrap) > 0 ? 1 : 0
+  key          = "vault_address"
+  value        = hcp_vault_cluster.this.vault_public_endpoint_url
+  description  = "(Required) Vault server address (e.g., https://vault-cluster.hashicorp.cloud:8200). Required for HCP Terraform authentication."
+  category     = "terraform"
+  workspace_id = data.tfe_workspace.bootstrap[0].id
 }
