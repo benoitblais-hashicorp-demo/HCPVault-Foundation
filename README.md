@@ -189,7 +189,6 @@ The following resources are used by this module:
 - [hcp_vault_cluster.this](https://registry.terraform.io/providers/hashicorp/hcp/0.110.0/docs/resources/vault_cluster) (resource)
 - [hcp_vault_cluster_admin_token.this](https://registry.terraform.io/providers/hashicorp/hcp/0.110.0/docs/resources/vault_cluster_admin_token) (resource)
 - [tfe_variable.vault_addr](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/variable) (resource)
-- [tfe_variable.vault_address](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/variable) (resource)
 - [tfe_variable.vault_token](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/variable) (resource)
 - [tfe_workspace.bootstrap](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/data-sources/workspace) (data source)
 
