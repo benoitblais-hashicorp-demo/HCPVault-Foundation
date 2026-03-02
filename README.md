@@ -61,7 +61,7 @@ The following requirements are needed by this module:
 
 - <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) (>= 1.13.0)
 
-- <a name="requirement_hcp"></a> [hcp](#requirement\_hcp) (0.110.0)
+- <a name="requirement_hcp"></a> [hcp](#requirement\_hcp) (0.111.0)
 
 - <a name="requirement_tfe"></a> [tfe](#requirement\_tfe) (~>0.70)
 
@@ -185,9 +185,9 @@ Default: `null`
 
 The following resources are used by this module:
 
-- [hcp_hvn.this](https://registry.terraform.io/providers/hashicorp/hcp/0.110.0/docs/resources/hvn) (resource)
-- [hcp_vault_cluster.this](https://registry.terraform.io/providers/hashicorp/hcp/0.110.0/docs/resources/vault_cluster) (resource)
-- [hcp_vault_cluster_admin_token.this](https://registry.terraform.io/providers/hashicorp/hcp/0.110.0/docs/resources/vault_cluster_admin_token) (resource)
+- [hcp_hvn.this](https://registry.terraform.io/providers/hashicorp/hcp/0.111.0/docs/resources/hvn) (resource)
+- [hcp_vault_cluster.this](https://registry.terraform.io/providers/hashicorp/hcp/0.111.0/docs/resources/vault_cluster) (resource)
+- [hcp_vault_cluster_admin_token.this](https://registry.terraform.io/providers/hashicorp/hcp/0.111.0/docs/resources/vault_cluster_admin_token) (resource)
 - [tfe_variable.vault_addr](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/variable) (resource)
 - [tfe_variable.vault_address](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/variable) (resource)
 - [tfe_variable.vault_token](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/variable) (resource)
