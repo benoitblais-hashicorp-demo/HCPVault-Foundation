@@ -57,6 +57,6 @@ resource "tfe_variable" "vault_address" {
   key             = "vault_address"
   value           = hcp_vault_cluster.this.vault_public_endpoint_url
   description     = "(Required) Vault server address (e.g., https://vault-cluster.hashicorp.cloud:8200). Required for HCP Terraform authentication."
-  category        = "env"
+  category        = "terraform"
   workspace_id    = data.tfe_workspace.bootstrap[0].id
 }
