@@ -171,7 +171,7 @@ Description: (Optional) Tier of the HCP Vault cluster. Valid options for tiers -
 
 Type: `string`
 
-Default: `"dev"`
+Default: `"standard_small"`
 
 ### <a name="input_upgrade_type"></a> [upgrade\_type](#input\_upgrade\_type)
 
