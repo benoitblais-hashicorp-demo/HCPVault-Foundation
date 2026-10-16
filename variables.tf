@@ -111,7 +111,7 @@ variable "tier" {
   description = "(Optional) Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `standard_small`, `standard_medium`, `standard_large`, `plus_small`, `plus_medium`, `plus_large`."
   type        = string
   nullable    = false
-  default     = "dev"
+  default     = "standard_small"
 
   validation {
     condition     = contains(["dev", "standard_small", "standard_medium", "standard_large", "plus_small", "plus_medium", "plus_large"], lower(var.tier))
